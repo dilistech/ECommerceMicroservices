@@ -1,0 +1,19 @@
+
+
+services:
+  catalogdb:
+    image: postgres
+  catalog_project:
+    build: ./services/catalog/catalog.api
+    volumes:
+      - ./services/catalog/catalog.api:/app
+    depends_on:
+      - catalogdb
+
+volumes:
+  postgres_catalog:
+
+
+
+  
+   
