@@ -3,17 +3,23 @@
 services:
   catalogdb:
     image: postgres
-  catalog_project:
-    build: ./services/catalog/catalog.api
-    volumes:
-      - ./services/catalog/catalog.api:/app
-    depends_on:
-      - catalogdb
+
+  basketdb:
+    image: postgres
+
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.Api/Dockerfile
 
 volumes:
   postgres_catalog:
+  postgres_basket:
 
-
-
-  
-   
